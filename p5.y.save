@@ -1,0 +1,8 @@
+var : l E { printf("Valid Variable \n "); return 0;
+}
+E:EL;
+|ED; ;
+%% main() { printf("Type of variable\n"); yyparse();
+}
+yyerror() { printf("Invalid Variable!! \n"); exit(0);
+}
