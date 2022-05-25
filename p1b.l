@@ -2,7 +2,7 @@
 #include<stdio.h>
 int i=0;
 %}
-digit[0-9]
+gdigit[0-9]
 letter[a-zA-Z]
 %%
 {letter}({letter}|{digit})* {i++;}

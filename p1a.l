@@ -13,7 +13,7 @@ int yywrap()
 }
 int main()
 {
-  yyin=fopen("p1.txt","r");
+  yyin=fopen("p1a.txt","r");
   yylex();
   printf("Number of charector are %d\n",ch);
   printf("Number of spaces are %d\n",sp);
