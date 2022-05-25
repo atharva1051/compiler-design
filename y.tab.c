@@ -66,19 +66,21 @@
    /* Put the tokens into the symbol table, so that GDB and other debuggers
       know about them.  */
    enum yytokentype {
-     NUM = 258
+     num = 258
    };
 #endif
 /* Tokens.  */
-#define NUM 258
+#define num 258
 
 
 
 
 /* Copy the first part of user declarations.  */
-#line 1 "p4.y"
-
+#line 1 "4.y"
 #include<stdio.h>
+#include<stdlib.h>
+int yylex();
+void yyerror(const char *s);
 
 
 /* Enabling traces.  */
@@ -112,7 +114,7 @@ typedef int YYSTYPE;
 
 
 /* Line 216 of yacc.c.  */
-#line 116 "y.tab.c"
+#line 118 "y.tab.c"
 
 #ifdef short
 # undef short
@@ -352,7 +354,7 @@ static const yytype_uint8 yytranslate[] =
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
-       8,     9,     6,     5,     2,     4,     2,     7,     2,     2,
+       8,     9,     6,     4,     2,     5,     2,     7,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
@@ -387,15 +389,15 @@ static const yytype_uint8 yyprhs[] =
 /* YYRHS -- A `-1'-separated list of the rules' RHS.  */
 static const yytype_int8 yyrhs[] =
 {
-      11,     0,    -1,    12,    -1,    12,     5,    12,    -1,    12,
-       4,    12,    -1,    12,     6,    12,    -1,    12,     7,    12,
+      11,     0,    -1,    12,    -1,    12,     4,    12,    -1,    12,
+       5,    12,    -1,    12,     6,    12,    -1,    12,     7,    12,
       -1,     8,    12,     9,    -1,     3,    -1
 };
 
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,     8,     8,     9,    10,    11,    12,    21,    22
+       0,    10,    10,    11,    12,    13,    14,    17,    18
 };
 #endif
 
@@ -404,8 +406,8 @@ static const yytype_uint8 yyrline[] =
    First, the terminals, then, starting at YYNTOKENS, nonterminals.  */
 static const char *const yytname[] =
 {
-  "$end", "error", "$undefined", "NUM", "'-'", "'+'", "'*'", "'/'", "'('",
-  "')'", "$accept", "start", "exp", 0
+  "$end", "error", "$undefined", "num", "'+'", "'-'", "'*'", "'/'", "'('",
+  "')'", "$accept", "input", "exp", 0
 };
 #endif
 
@@ -414,7 +416,7 @@ static const char *const yytname[] =
    token YYLEX-NUM.  */
 static const yytype_uint16 yytoknum[] =
 {
-       0,   256,   257,   258,    45,    43,    42,    47,    40,    41
+       0,   256,   257,   258,    43,    45,    42,    47,    40,    41
 };
 # endif
 
@@ -436,7 +438,7 @@ static const yytype_uint8 yyr2[] =
 static const yytype_uint8 yydefact[] =
 {
        0,     8,     0,     0,     2,     0,     1,     0,     0,     0,
-       0,     7,     4,     3,     5,     6
+       0,     7,     3,     4,     5,     6
 };
 
 /* YYDEFGOTO[NTERM-NUM].  */
@@ -451,7 +453,7 @@ static const yytype_int8 yydefgoto[] =
 static const yytype_int8 yypact[] =
 {
       10,    -4,    10,    17,    -3,     5,    -4,    10,    10,    10,
-      10,    -4,     9,     9,     9,     9
+      10,    -4,     9,     9,    -4,    -4
 };
 
 /* YYPGOTO[NTERM-NUM].  */
@@ -1297,50 +1299,45 @@ yyreduce:
   switch (yyn)
     {
         case 2:
-#line 8 "p4.y"
-    {printf("%d\n",(yyval));}
+#line 10 "4.y"
+    {printf("%d\n",(yyval));exit(0);}
     break;
 
   case 3:
-#line 9 "p4.y"
+#line 11 "4.y"
     {(yyval)=(yyvsp[(1) - (3)])+(yyvsp[(3) - (3)]);}
     break;
 
   case 4:
-#line 10 "p4.y"
+#line 12 "4.y"
     {(yyval)=(yyvsp[(1) - (3)])-(yyvsp[(3) - (3)]);}
     break;
 
   case 5:
-#line 11 "p4.y"
+#line 13 "4.y"
     {(yyval)=(yyvsp[(1) - (3)])*(yyvsp[(3) - (3)]);}
     break;
 
   case 6:
-#line 13 "p4.y"
-    {
-if((yyvsp[(3) - (3)])==0)
-yyerror("error");
+#line 14 "4.y"
+    {if((yyvsp[(3) - (3)])==0){printf("Division by zero\n");exit(0);}
 else
-{
-(yyval)=(yyvsp[(1) - (3)])/(yyvsp[(3) - (3)]);
-}
-}
+(yyval)=(yyvsp[(1) - (3)])/(yyvsp[(3) - (3)]);}
     break;
 
   case 7:
-#line 21 "p4.y"
+#line 17 "4.y"
     {(yyval)=(yyvsp[(2) - (3)]);}
     break;
 
   case 8:
-#line 22 "p4.y"
+#line 18 "4.y"
     {(yyval)=(yyvsp[(1) - (1)]);}
     break;
 
 
 /* Line 1267 of yacc.c.  */
-#line 1344 "y.tab.c"
+#line 1341 "y.tab.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -1554,16 +1551,14 @@ yyreturn:
 }
 
 
-#line 24 "p4.y"
+#line 19 "4.y"
 
-main()
+int main()
 {
-printf("Enter the Expr. in terms of integers\n");
-if(yyparse()==0)
-printf("Success\n");
+printf("Enter the expression:\n");
+yyparse();
 }
-yywrap(){}
-yyerror()
+int yywrap()
 {
-printf("Error\n");
+    return 1;
 }

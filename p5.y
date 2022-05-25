@@ -1,4 +1,6 @@
 %{
+
+
 %}
 %token L D
 %%
@@ -12,7 +14,8 @@ main()
 {
  printf("Type of variable: \n"); yyparse();
 }
-yyerror()
+int yywrap()
 {
- printf("Invalid Vaxriable!! \n"); exit(0);
+    return 1;
 }
+
