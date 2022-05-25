@@ -363,21 +363,21 @@ struct yy_trans_info
 	};
 static const flex_int16_t yy_accept[9] =
     {   0,
-        0,    0,    6,    3,    4,    1,    2,    0
+        0,    0,    6,    4,    3,    2,    1,    0
     } ;
 
 static const YY_CHAR yy_ec[256] =
     {   0,
-        1,    1,    1,    1,    1,    1,    1,    1,    1,    2,
+        1,    1,    1,    1,    1,    1,    1,    1,    2,    3,
+        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
+        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
+        1,    4,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    1,    1,    1,    3,    4,    1,    1,
 
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
@@ -437,9 +437,9 @@ int yy_flex_debug = 0;
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
-#line 1 "p6.l"
-#line 2 "p6.l"
-#include "y.tab.h"
+#line 1 "p1.l"
+#line 2 "p1.l"
+int ch=0,wd=1,ln=1,sp=0;
 #line 443 "lex.yy.c"
 #line 444 "lex.yy.c"
 
@@ -658,7 +658,7 @@ YY_DECL
 		}
 
 	{
-#line 4 "p6.l"
+#line 4 "p1.l"
 
 #line 663 "lex.yy.c"
 
@@ -719,31 +719,32 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 5 "p6.l"
-return A; 
+#line 5 "p1.l"
+{sp++;wd++;}
 	YY_BREAK
 case 2:
+/* rule 2 can match eol */
 YY_RULE_SETUP
-#line 6 "p6.l"
-return B; 
+#line 6 "p1.l"
+ln++;wd++;
 	YY_BREAK
 case 3:
+/* rule 3 can match eol */
 YY_RULE_SETUP
-#line 7 "p6.l"
-return yytext[0]; 
+#line 7 "p1.l"
+wd++;
 	YY_BREAK
 case 4:
-/* rule 4 can match eol */
 YY_RULE_SETUP
-#line 8 "p6.l"
-return yytext[0];
+#line 8 "p1.l"
+ch++;
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 9 "p6.l"
+#line 9 "p1.l"
 ECHO;
 	YY_BREAK
-#line 746 "lex.yy.c"
+#line 747 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1748,7 +1749,19 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 9 "p6.l"
+#line 9 "p1.l"
 
-
-
+int yywrap()
+{
+    return 1;
+}
+int main()
+{
+  yyin=fopen("p1.txt","r");
+  yylex();
+  printf("Number of charector are %d\n",ch);
+  printf("Number of spaces are %d\n",sp);
+  printf("Number of words are %d\n",wd);
+  printf("Number of lines are %d\n",ln);
+  return 0;
+}
