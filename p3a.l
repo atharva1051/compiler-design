@@ -1,37 +1,23 @@
-
-
 %{
-    #include<stdio.h>
-	/* Definition section */
-	int postiveno=0;
-	int negtiveno=0;
-	int positivefractions=0;
-	int negativefractions=0;
+#include<stdio.h>
+int pi=0,ni=0,pf=0,nf=0;
 %}
-
-/* Rule Section */
-DIGIT [0-9]
 %%
-
-\+?{DIGIT}+			 postiveno++;
--{DIGIT}+			 negtiveno++;
-
-\+?{DIGIT}*\.{DIGIT}+ positivefractions++;
--{DIGIT}*\.{DIGIT}+	 negativefractions++;
-. ;
+[-][0-9]+ {ni++;}
+[+]?[0-9]+ {pi++;}
+[-][0-9]*\.[0-9]+ {nf++;}
+[+]?[0-9]*\.[0-9]+ {pf++;}
 %%
-
-// driver code
-int yywrap()
-{
-    return 0;
-}
 int main()
 {
+	yyin=fopen("p3a.txt","r");
 	yylex();
-	printf("\nNo. of positive numbers: %d", postiveno);
-	printf("\nNo. of Negative numbers: %d", negtiveno);
-	printf("\nNo. of Positive numbers in fractions: %d", positivefractions);
-	printf("\nNo. of Negative numbers in fractions: %d\n", negativefractions);
-	return 0;
+	printf("Number of positive integer %d\n",pi);
+	printf("Number of negative integer %d\n",ni);
+	printf("Number of positive fraction %d\n",pf);
+	printf("Number of negative fraction %d\n",nf);
+	return 1;
+	}
+int yywrap(){
+return 1;
 }

@@ -11,7 +11,7 @@ int yywrap()
 }
 int main()
 {
-printf("Enter the sentence\n");
+yyin=fopen("p2b.txt","r");
 yylex();
 if(flag==1)
 printf("\nCompound sentence\n");
